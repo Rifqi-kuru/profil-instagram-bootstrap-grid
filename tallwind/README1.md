@@ -1,4 +1,4 @@
-## 1. Keputusan Grid-cols dan Gap di Tiap Breakpoint
+## 1. Jelaskan keputusan grid-cols/gap di tiap breakpoint — kenapa begitu?
 
 Saya memilih konfigurasi grid untuk feed (dan elemen lain) berdasarkan prinsip mobile-first, mengikuti pola Instagram asli, serta mempertimbangkan ukuran layar, aspect ratio gambar (persegi 1:1), dan pengalaman pengguna (UX). Berikut penjelasan detail per breakpoint:
 
@@ -16,7 +16,7 @@ Saya memilih konfigurasi grid untuk feed (dan elemen lain) berdasarkan prinsip m
 
 Secara keseluruhan, keputusan ini prioritas UX: mobile fokus pada kemudahan scroll, sementara desktop pada efisiensi tampilan. Gap progresif (2→3→4) mengikuti skala Tailwind untuk konsistensi visual.
 
-## 2. Pemanfaatan Utility Responsive Tailwind untuk Memecahkan Masalah Layout di Mobile
+## 2. Bagaimana kamu memanfaatkan utility responsive Tailwind untuk memecahkan masalah layout yang muncul di mobile?
 
 Tailwind's responsive utilities (prefix seperti `md:`, `lg:`) memungkinkan pendekatan mobile-first, di mana layout default dioptimalkan untuk mobile, lalu "di-upgrade" di breakpoint lebih besar. Ini menyelesaikan masalah umum mobile seperti ruang terbatas, stacking elemen, dan ukuran teks/tombol yang tidak proporsional. Berikut bagaimana saya terapkan:
 
@@ -34,7 +34,7 @@ Tailwind's responsive utilities (prefix seperti `md:`, `lg:`) memungkinkan pende
 
 Hasilnya, layout mobile ringkas, touch-optimized, dan otomatis adaptif—tidak perlu media query manual, karena Tailwind handle breakpoint secara deklaratif.
 
-## 3. Trade-off antara Memakai Banyak Utility Classes vs Membuat Component CSS Tersendiri
+## 3. Jelaskan trade-off antara memakai banyak utility classes vs membuat component CSS tersendiri.
 
 Tailwind mendorong utility-first approach (banyak class seperti `flex flex-col md:flex-row gap-4`), tapi ini punya trade-off dibanding pendekatan tradisional (buat component CSS seperti `.profile-header { display: flex; ... }`). Berikut analisis:
 
@@ -59,5 +59,6 @@ Tailwind mendorong utility-first approach (banyak class seperti `flex flex-col m
   - **Kurang Fleksibel**: Ubah satu aspek (e.g., spacing di satu instance) butuh override atau varian baru, yang bisa bikin CSS bloated juga. Sulit eksperimen cepat tanpa edit file terpisah.  
   - **Maintenance Overhead**: Harus kelola file CSS tambahan, potensi konflik specificity, dan kurang konsisten jika tim tidak ikuti design system. Butuh tool seperti Sass/PostCSS untuk nesting/responsif.  
   - **Waktu Awal Lebih Lama**: Harus desain component dulu, bukan langsung apply utility.
+
 
 **Rekomendasi Trade-off**: Gunakan utility untuk prototipe atau halaman sederhana (seperti proyek ini—cepat dan responsif). Untuk app skala besar, hybrid: Tailwind untuk base utilities, component CSS (atau @apply di Tailwind) untuk reusable parts. Ini balance fleksibilitas dan kebersihan, tergantung konteks proyek.
